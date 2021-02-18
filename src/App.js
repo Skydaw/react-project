@@ -1,16 +1,25 @@
+import React, { useState } from 'react';
 import './App.css';
-import Header from './components/Header';
+import data from './data';
+import List from './components/List';
+import Navbar from './components/Navbar';
 
 function App() {
-  const cake= true
+  const [student, setStudent] = useState(data);
+
   return (
-    <div className="App">
-      <h2> {cake ? "The cake is a lie":"it's true" }</h2>
-      <Header title={0} />
-      <Header title="C'est vrai"/>
-      <Header/>
- 
-    </div>
+    <>
+    <headers>
+      <Navbar/>
+    </headers>
+    <main>
+      <section className="container">
+        <h2>Attendance List for {student.length} students</h2>
+        <List student={student}/>
+        <button onClick={(()=>setStudent([]))}>Clear list</button>
+      </section>
+    </main>
+    </>
   );
 }
 
