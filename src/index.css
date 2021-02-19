@@ -26,17 +26,21 @@
   display: block;
   width: 20%;
   height: 100%;
-  border-bottom: 2px black solid;
   font-size:1.5rem;
 
   transition:background-color 0.3s, color 0.3s, transform 0.3s, border-bottom 2s;
 }
 .navbar a:hover{
   background-color:white;
+  
   color: black;
-  transform: scale(1.2);
-  border-bottom: 2px black solid;
 }
+.navbar .active{
+  background-color: white;
+  color: black;
+
+}
+
 
 
 
@@ -45,6 +49,7 @@
 .container{
   background:ghostwhite;
   margin: auto;
+  
 }
 .student-list{
   display:flex;

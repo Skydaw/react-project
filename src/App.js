@@ -1,25 +1,45 @@
-import React, { useState } from 'react';
 import './App.css';
-import data from './data';
-import List from './components/List';
 import Navbar from './components/Navbar';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import Home from './pages/Home';
+import Project from './pages/Project';
+import Contact from './pages/Contact';
+import {Transition} from 'react-transition-group';
+import{gsap} from 'gsap';
+
+const routes=[
+  {path: '/', name:"Home", Component: Home},
+  {path: '/project', name:"Project", Component: Project},
+  {path: '/contact', name:"Contact", Component: Contact}
+]
+
 
 function App() {
-  const [student, setStudent] = useState(data);
 
   return (
-    <>
+    <Router>
     <headers>
       <Navbar/>
     </headers>
+        
     <main>
       <section className="container">
-        <h2>Attendance List for {student.length} students</h2>
-        <List student={student}/>
-        <button onClick={(()=>setStudent([]))}>Clear list</button>
+        <Transition>
+          <Switch>
+            {routes.map(({path, Component})=>(
+              <Route key={path} path={path} exact >
+                {()=>(
+                      <>
+                        <Component/>
+                      </>
+                )}
+              </Route>
+            ))};
+          </Switch>
+        </Transition>
       </section>
     </main>
-    </>
+    </Router>
   );
 }
 
